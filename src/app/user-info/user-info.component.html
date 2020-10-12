@@ -1,0 +1,13 @@
+<button class="btn btn__primary" (click)="voltar()">Voltar</button>
+
+<div class="info__box">
+    <div class="info__header">
+        <img src="{{service.user?.avatar_url}}" alt="">
+    </div>
+    <div *ngFor="let item of arrayObjects" class="info__row">
+        <div class="info__label">{{item}}:</div>
+        <div class="info__value">{{service.user[item]}}</div>
+    </div>
+</div>
+
+<!-- <pre>{{service.user | json}}</pre> -->

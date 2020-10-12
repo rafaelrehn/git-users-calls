@@ -123,6 +123,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "git-users-calls"
+    }
+  },
+  "defaultProject": "git-users-calls",
+  "cli": {
+    "analytics": false
+  }
 }

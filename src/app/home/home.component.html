@@ -1,0 +1,15 @@
+<div class="flex flex-column justify-center align-center">
+  <h1>Bem vindo ao meu APP</h1>
+  <h4>Consulta de usuários do Github</h4>
+</div>
+
+<div class="search__box">
+  <input class="search__input" type="text" placeholder="Pesquise por um nome de usuário..."
+   [(ngModel)]="queryString" name="queryString" (keydown.enter)="pesquisar()">
+  <button class="btn search__btn" (click)="pesquisar()">
+    <search-icon *ngIf="!service.loader"></search-icon>
+    <refresh-icon class="rotate" *ngIf="service.loader"></refresh-icon>
+  </button>
+</div>
+
+<app-user-box></app-user-box>

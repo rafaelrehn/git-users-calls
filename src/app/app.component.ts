@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { GithubService } from './github.service';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +8,7 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'git-users-calls';
+  constructor(
+    public service: GithubService
+  ){}
 }
