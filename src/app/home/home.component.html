@@ -4,7 +4,7 @@
 </div>
 
 <div class="search__box">
-  <input class="search__input" type="text" placeholder="Pesquise por um nome de usuário..."
+  <input class="search__input" #mainInput type="text" placeholder="Pesquise por um nome de usuário..."
    [(ngModel)]="queryString" name="queryString" (keydown.enter)="pesquisar()">
   <button class="btn search__btn" (click)="pesquisar()">
     <search-icon *ngIf="!service.loader"></search-icon>

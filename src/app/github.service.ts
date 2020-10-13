@@ -25,22 +25,29 @@ export class GithubService {
   ) { }
 
 
-  getUserByName(queryString: string){
-    this.loader = true
-    const url = USER_url + queryString
-    this.http.get(url).subscribe(async (res: any)=>{
-      // this.user = res
-      const prom1 = this.getUserRepo(res.login)
-      const prom2 = this.getUserStarred(res.login)
+  getUserByName(queryString: string): Promise<any>{
+    return new Promise((resolve)=>{
+    
+      this.loader = true
+      const url = USER_url + queryString
+      this.http.get(url).subscribe(async (res: any)=>{
+        const prom1 = this.getUserRepo(res.login)
+        const prom2 = this.getUserStarred(res.login)
 
-      Promise.all([prom1, prom2]).then(_=>{
-        this.loader = false;
-        this.user = res
+        await Promise.all([prom1, prom2]).then(_=>{
+          this.loader = false;
+          this.user = res
+        })
+
+        resolve(res)
+      }, err=> {
+        this.loader = false
+        resolve(err)
       })
-    }, err=> this.loader = false)
+    })
   }
 
-  private getUserRepo(username: string){
+  private getUserRepo(username: string) : Promise<any>{
     return new Promise(resolve=>{
       const url = USER_url + username + '/repos'
       this.http.get(url).subscribe(res=>{
@@ -50,7 +57,7 @@ export class GithubService {
     })
   }
 
-  private getUserStarred(username:string){
+  private getUserStarred(username:string): Promise<any>{
     return new Promise(resolve=>{
 
       const url = USER_url + username + '/starred'

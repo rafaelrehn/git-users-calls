@@ -17,14 +17,24 @@ export class UserInfoComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.setObjects()
+    this.checkRouter()
   }
 
   voltar(){
     this.router.navigate(['home'])
   }
 
+  private checkRouter(){
+    let urlName = this.router.url.slice(6)
+    if(this.service.user &&  this.service.user.login == urlName){
+      this.setObjects()
+    }else{
+      this.voltar()
+    }
+  }
+
   private setObjects(){
+    // if(this.arrayObjects)
     this.arrayObjects = Object.keys(this.service.user)
   }
 
